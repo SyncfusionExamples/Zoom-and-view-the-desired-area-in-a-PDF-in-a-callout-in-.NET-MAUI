@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PdfZoomCallout.MainPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.PdfViewer;assembly=Syncfusion.Maui.PdfViewer"
+             xmlns:local="clr-namespace:PdfZoomCallout">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Top options bar-->
+            <Border StrokeThickness="0.5" Grid.Row="0">
+                <Grid>
+                    <Label Text="Syncfusion PDF Viewer" Margin="12,0,0,0" VerticalOptions="Center"/>
+                    <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,12,0">
+                        <Switch IsToggled="False"  
+                                Toggled="Switch_Toggled" HandlerChanged="Switch_HandlerChanged"/>
+                        <Label Margin="{OnPlatform Default='8,0,0,0'}" IsVisible="{OnPlatform Default=True, WinUI=False}" Text="Callout Mode" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1">
+                <!--PDF Viewer-->
+                <syncfusion:SfPdfViewer 
+                    x:Name="PdfViewer" DocumentSource="{Binding PdfDocumentStream}"
+                    AnnotationAdded="PdfViewer_AnnotationAdded"
+                    DocumentLoaded="PdfViewer_DocumentLoaded">
+                </syncfusion:SfPdfViewer>
+                <!--callout UI-->
+                <Grid BackgroundColor="#33000000" x:Name="CalloutPopup" IsVisible="False">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                             NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                    <Image 
+                        x:Name="CalloutImage"
+                        VerticalOptions="Center" HorizontalOptions="Center" 
+                        Margin="{OnPlatform 40, iOS=20, Android=20}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
