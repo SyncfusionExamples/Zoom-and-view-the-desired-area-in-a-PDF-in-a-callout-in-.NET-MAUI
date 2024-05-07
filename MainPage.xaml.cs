@@ -7,7 +7,7 @@ namespace PdfZoomCallout
 {
     public partial class MainPage : ContentPage
     {
-        PdfToImageConverter? imageConverter;;
+        PdfToImageConverter? imageConverter;
         bool showHint = true;
 
         public MainPage()
