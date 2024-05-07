@@ -1,4 +1,3 @@
-﻿using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace PdfZoomCallout
@@ -15,10 +14,6 @@ namespace PdfZoomCallout
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
             builder.ConfigureSyncfusionCore();
             return builder.Build();
         }
